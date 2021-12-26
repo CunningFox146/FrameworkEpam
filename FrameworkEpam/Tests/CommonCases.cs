@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Serilog;
 using System;
 
 namespace FrameworkEpam.Tests
@@ -17,6 +18,8 @@ namespace FrameworkEpam.Tests
         {
             new LoggerManager();
             _url = url;
+
+            var browser = TestContext.Parameters.Get("Browser");
         }
 
         [OneTimeSetUp]

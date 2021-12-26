@@ -6,7 +6,7 @@ namespace FrameworkEpam.Utils
     {
         public static By Get(string elementName)
         {
-            if (ConfigurationManager.Configuration.UIMapSelectors.TryGetValue(elementName, out var selector))
+            if (ConfigurationManager.Configuration.UIMapConfig.CssSelectors.TryGetValue(elementName, out var selector))
                 return By.CssSelector(selector);
 
             throw new System.Exception($"Failed to get elemet: {elementName}");

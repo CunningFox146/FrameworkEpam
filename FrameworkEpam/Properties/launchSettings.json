@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FrameworkEpam": {
+      "commandName": "Project",
+      "commandLineArgs": "--params:Browser=Chrome"
+    }
+  }
+}

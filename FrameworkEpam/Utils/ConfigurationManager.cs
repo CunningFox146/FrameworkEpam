@@ -8,14 +8,23 @@ namespace FrameworkEpam.Utils
     public static class ConfigurationManager
     {
         public static TestsConfiguration Configuration { get; private set; }
-        public static readonly string ConfigPath = @"D:\Labs\TestFrameworkEpam\testsConfig.json";
 
         static ConfigurationManager()
         {
             try
             {
-                string json = File.ReadAllText(ConfigPath);
-                Configuration = JsonConvert.DeserializeObject<TestsConfiguration>(json);
+                var configPath = Environment.GetEnvironmentVariable("testConfigPath");
+
+                if (configPath == null)
+                {
+                    throw new Exception("Failed to get testConfigPath from PATH");
+                }
+
+                string configJson = File.ReadAllText(configPath);
+                Configuration = JsonConvert.DeserializeObject<TestsConfiguration>(configJson) ?? new TestsConfiguration().FillDefaultValues();
+
+                string mapJson = File.ReadAllText(Configuration.UIMapPath);
+                Configuration.UIMapConfig = JsonConvert.DeserializeObject<UIMapConfiguration>(mapJson) ?? new UIMapConfiguration().FillDefaultValues();
             }
             catch (Exception ex)
             {
