@@ -49,6 +49,7 @@ namespace FrameworkEpam.Tests
         [OneTimeTearDown]
         public virtual void OneTimeTearDown()
         {
+            LoggerManager.StopLogger();
             Driver.Quit();
         }
 

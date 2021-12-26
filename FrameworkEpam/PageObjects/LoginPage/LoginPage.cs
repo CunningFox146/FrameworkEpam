@@ -16,12 +16,14 @@ namespace FrameworkEpam.PageObjects.LoginPage
 
         public LoginPage WriteEmail(string email)
         {
+            EmailField.Clear();
             EmailField.SendKeys(email);
             return this;
         }
 
         public LoginPage WritePassword(string password)
         {
+            EmailField.Clear();
             PasswordField.SendKeys(password);
             return this;
         }
@@ -29,14 +31,6 @@ namespace FrameworkEpam.PageObjects.LoginPage
         public LoginPage LogIn()
         {
             LogInButton.Click();
-            return this;
-        }
-
-        public LoginPage LogInUser(User user)
-        {
-            WriteEmail(user.Login);
-            WritePassword(user.Password);
-            LogIn();
             return this;
         }
     }

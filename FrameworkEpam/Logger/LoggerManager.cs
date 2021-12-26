@@ -9,16 +9,16 @@ namespace FrameworkEpam.Logger
     {
         public LoggerManager()
         {
-            string logPath = @"D:\Labs\EPAM_TEST_FRAMEWORK\Logs\log.txt";
+            string logPath = ConfigurationManager.Configuration.LogsPath;
 
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File(logPath)
                 .CreateLogger();
+        }
 
-            Log.Information("test");
-
-
-
+        public static void StopLogger()
+        {
+            Log.CloseAndFlush();
         }
     }
 }

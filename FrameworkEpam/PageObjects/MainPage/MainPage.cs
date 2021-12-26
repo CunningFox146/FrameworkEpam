@@ -8,9 +8,7 @@ namespace FrameworkEpam.PageObjects.MainPage
         public IWebElement SuccessSellButton => Driver.FindElement(UIMap.Get("SuccessSellButton"));
 
         public OrderElement OrderElement { get; private set; }
-
-        public bool IsSuccessSellButtonDisabled => !string.IsNullOrEmpty(SuccessSellButton.GetDomProperty("disabled"));
-
+        
         public MainPage(IWebDriver driver) : base(driver)
         {
             OrderElement = new OrderElement(driver);
