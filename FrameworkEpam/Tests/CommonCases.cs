@@ -1,6 +1,8 @@
 ﻿using FrameworkEpam.Driver;
 using FrameworkEpam.Logger;
+using FrameworkEpam.Utils;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Serilog;
@@ -35,10 +37,20 @@ namespace FrameworkEpam.Tests
             Driver.Navigate().GoToUrl(_url);
         }
 
+        [TearDown]
+        public virtual void TearDown()
+        {
+            bool havePassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
+            if (havePassed) return;
+
+            Screenshoter.TakeScreenshot();
+        }
+
         [OneTimeTearDown]
         public virtual void OneTimeTearDown()
         {
             Driver.Quit();
         }
+
     }
 }

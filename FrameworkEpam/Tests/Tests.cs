@@ -32,7 +32,8 @@ namespace FrameworkEpam.Tests
             mainPage.OrderElement.OpenTab(OrderType.Market)
                 .WriteValueField("0");
 
-            Assert.True(mainPage.IsSuccessSellButtonDisabled);
+            Assert.Fail();
+            //Assert.True(mainPage.IsSuccessSellButtonDisabled);
         }
     }
 }

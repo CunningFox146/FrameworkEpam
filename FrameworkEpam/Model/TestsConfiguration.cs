@@ -9,6 +9,7 @@ namespace FrameworkEpam.Model
         public string UIMapPath { get; set; }
         public string Browser { get; set; }
         public string DriverPath { get; set; }
+        public string ScreenshotsPath { get; set; }
         public User User { get; set; }
 
         [JsonIgnore]
