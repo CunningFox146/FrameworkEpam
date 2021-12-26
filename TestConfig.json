@@ -1,0 +1,10 @@
+{
+	"LogsPath": "Logs/log.txt",
+	"Browser": "Firefox",
+	"DriverPath": "C:/Program Files/",
+	"UIMapPath": "C:/Users/Makar.Dzezhamesau/Desktop/UIMap.json",
+	"User": {
+		"Login": "makar.papca@gmail.com",
+		"Password": "Cunning84"
+	}
+}

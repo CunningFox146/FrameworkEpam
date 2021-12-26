@@ -7,6 +7,8 @@ namespace FrameworkEpam.Model
     {
         public string LogsPath { get; set; }
         public string UIMapPath { get; set; }
+        public string Browser { get; set; }
+        public string DriverPath { get; set; }
         public User User { get; set; }
 
         [JsonIgnore]

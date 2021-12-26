@@ -1,0 +1,15 @@
+{
+	"CssSelectors": {
+		"EmailField": "#email",
+		"PasswordField": "#password",
+		"LogInButton": "button[type='submit']",
+		"Logo": "a[href='/app/']",
+		"LimitTab": ".ordTypes > li[data-tab-index='0']",
+		"MarketTab": ".ordTypes > li[data-tab-index='1']",
+		"MarketStopTab": ".ordTypes > li[data-tab-index='2']",
+		"MarketValueField": "input#notionalValue",
+		"Notification": ".notifications .notification",
+		"SuccessSellButton": ".btn-success"
+	},
+	"XpathSelectors": {}
+}

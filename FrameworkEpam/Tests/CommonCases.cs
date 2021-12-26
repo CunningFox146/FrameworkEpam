@@ -1,4 +1,5 @@
-﻿using FrameworkEpam.Logger;
+﻿using FrameworkEpam.Driver;
+using FrameworkEpam.Logger;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -25,11 +26,7 @@ namespace FrameworkEpam.Tests
         [OneTimeSetUp]
         public virtual void OneTimeSetUp()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--ignore-certificate-errors");
-            options.AddArguments("--ignore-ssl-errors");
-
-            _driver = new ChromeDriver(options);
+            _driver = DriverSingleton.Driver;
 
             Driver.Manage().Window.Maximize();
             Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(15);
