@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 
 namespace FrameworkEpam.Utils
 {
@@ -11,6 +12,11 @@ namespace FrameworkEpam.Utils
         {
             return new WebDriverWait(CommonCases.Driver, TimeSpan.FromSeconds(seconds))
                 .Until(Driver => Driver.FindElement(element));
+        }
+        public static ICollection<IWebElement> WaitForElements(By element, double seconds = 10)
+        {
+            return new WebDriverWait(CommonCases.Driver, TimeSpan.FromSeconds(seconds))
+                .Until(Driver => Driver.FindElements(element));
         }
     }
 }

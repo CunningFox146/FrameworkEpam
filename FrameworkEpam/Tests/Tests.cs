@@ -1,8 +1,7 @@
-﻿using FrameworkEpam.PageObjects.MainPage;
-using FrameworkEpam.Service;
+﻿using FrameworkEpam.Service;
 using FrameworkEpam.Service.Layers;
 using NUnit.Framework;
-using Serilog;
+using System.Threading;
 
 namespace FrameworkEpam.Tests
 {
@@ -24,18 +23,19 @@ namespace FrameworkEpam.Tests
             Assert.AreEqual(startUrl, Driver.Url);
 
             loginLayer.LogInUser(UserCreator.CreateFromConfig());
-            Assert.AreEqual(startUrl, Driver.Url);
+            Assert.AreNotEqual(startUrl, Driver.Url);
         }
 
-        //[Test, Order(2)]
-        //public void BuyWithInvalidValueTest()
-        //{
-        //    var mainPage = new MainPage(Driver);
-
-        //    mainPage.OrderElement.OpenTab(OrderType.Market)
-        //        .WriteValueField("0");
-
-        //    Assert.True(mainPage.IsSuccessSellButtonDisabled);
-        //}
+        [Test, Order(2)]
+        public void AddAddressRecordTest()
+        {
+            Thread.Sleep(3000);
+            var addressLayer = new AddressLayer(Driver);
+            addressLayer.AddRecord(AddressRecordCreator.CreateWithEmptyAddress());
+            Thread.Sleep(3000);
+            addressLayer.AddRecord(AddressRecordCreator.CreateWithEmptyName());
+            Thread.Sleep(3000);
+            addressLayer.AddRecord(AddressRecordCreator.CreateRandomValid());
+        }
     }
 }

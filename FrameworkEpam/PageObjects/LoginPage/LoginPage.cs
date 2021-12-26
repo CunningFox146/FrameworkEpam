@@ -23,7 +23,7 @@ namespace FrameworkEpam.PageObjects.LoginPage
 
         public LoginPage WritePassword(string password)
         {
-            EmailField.Clear();
+            PasswordField.Clear();
             PasswordField.SendKeys(password);
             return this;
         }
