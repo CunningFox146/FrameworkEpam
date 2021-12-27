@@ -13,8 +13,14 @@ namespace FrameworkEpam.PageObjects.Addresses
         public IWebElement NoteField => WaitUtil.WaitForElement(UIMap.Get("AddressNoteField"));
         public IWebElement CurrencySelect => WaitUtil.WaitForElement(UIMap.Get("CurrencySelect"));
         public IWebElement SubmitButton => WaitUtil.WaitForElement(UIMap.Get("AddressSubmitButton"));
-        public IWebElement SkipConfirmToggle => WaitUtil.WaitForElement(UIMap.Get("skipConfirm"));
+        public IWebElement SkipConfirmToggle => WaitUtil.WaitForElement(UIMap.Get("AddressSkipConfirm"));
+        public IWebElement CancelAddingButton => WaitUtil.WaitForElement(UIMap.Get("AddressCancelAdding"));
+        public IWebElement DeleteRecordButton => WaitUtil.WaitForElement(UIMap.Get("AddressDeleteButton"));
         public ICollection<IWebElement> CurrencySelectOptions => WaitUtil.WaitForElements(UIMap.Get("CurrencySelectOptions"));
+        public ICollection<IWebElement> Records => WaitUtil.WaitForElements(UIMap.Get("AddressRecords"), 1);
+
+        public bool CanSubmit => string.IsNullOrEmpty(SubmitButton.GetAttribute("disabled"));
+        private bool IsAdding => Driver.FindElements(UIMap.Get("AddressCancelAdding")).Count > 0;
 
         public AddressesPage(IWebDriver driver) : base(driver)
         {
@@ -42,11 +48,33 @@ namespace FrameworkEpam.PageObjects.Addresses
             return this;
         }
 
+        public AddressesPage AddNewRecord()
+        {
+            if (IsAdding) return this;
+
+            CancelAddingButton.Click();
+            AddRecordBtn.Click();
+
+            return this;
+        }
+
         public AddressesPage SelectCurrency(int idx)
         {
             CurrencySelect.Click();
             CurrencySelectOptions.ToArray()[idx].Click();
 
+            return this;
+        }
+
+        public AddressesPage Submit()
+        {
+            SubmitButton.Click();
+            return this;
+        }
+
+        public AddressesPage CleanUp()
+        {
+            DeleteRecordButton.Click();
             return this;
         }
     }

@@ -29,13 +29,19 @@ namespace FrameworkEpam.Tests
         [Test, Order(2)]
         public void AddAddressRecordTest()
         {
-            Thread.Sleep(3000);
             var addressLayer = new AddressLayer(Driver);
+            int startRecordsCount = addressLayer.RecordsCount;
+
             addressLayer.AddRecord(AddressRecordCreator.CreateWithEmptyAddress());
-            Thread.Sleep(3000);
+            Assert.AreEqual(startRecordsCount, addressLayer.RecordsCount);
+
             addressLayer.AddRecord(AddressRecordCreator.CreateWithEmptyName());
-            Thread.Sleep(3000);
+            Assert.AreEqual(startRecordsCount, addressLayer.RecordsCount);
+
             addressLayer.AddRecord(AddressRecordCreator.CreateRandomValid());
+            Assert.AreNotEqual(startRecordsCount, addressLayer.RecordsCount);
+
+            addressLayer.Page.CleanUp();
         }
     }
 }

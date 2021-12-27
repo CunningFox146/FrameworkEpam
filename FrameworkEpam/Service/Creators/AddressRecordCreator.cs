@@ -12,7 +12,7 @@ namespace FrameworkEpam.Service
 
             return new AddressRecord(
                 StringUtil.RandomString(5 + random.Next(5)),
-                StringUtil.RandomString(5 + random.Next(5)),
+                "mkHS9ne12qx9pS9VojpwU5xtRd4T7X7ZUt",
                 random.Next(1),
                 StringUtil.RandomString(5 + random.Next(5)),
                 random.Next(1) == 0
