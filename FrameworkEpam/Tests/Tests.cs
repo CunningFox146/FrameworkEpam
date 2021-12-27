@@ -58,7 +58,7 @@ namespace FrameworkEpam.Tests
 
         }
 
-        [Test, Order(4)]
+        //[Test, Order(10)]
         public void DownloadTradeHistoryTest()
         {
             var historyLayer = new TradeHistoryLayer(Driver);
@@ -76,6 +76,20 @@ namespace FrameworkEpam.Tests
                 Assert.AreEqual(newFiles.Length, 1);
                 Assert.That(() => newFiles[0].Contains(fileNameExpected) && newFiles[0].Contains(currDate));
             });
+        }
+
+        [Test, Order(8)]
+        public void ChangeCurrencyDisplay()
+        {
+            var mainPageLayer = new MainPageLayer(Driver);
+            mainPageLayer.ChangeCurrencyToXBT();
+            string startXBT = mainPageLayer.CurrentXbtValue;
+
+            mainPageLayer.ChangeCurrencyToXBt();
+            Assert.AreNotEqual(startXBT, mainPageLayer.CurrentXbtValue);
+
+            mainPageLayer.ChangeCurrencyToXBT();
+            Assert.AreEqual(startXBT, mainPageLayer.CurrentXbtValue);
         }
     }
 }
