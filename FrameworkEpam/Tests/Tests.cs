@@ -26,7 +26,7 @@ namespace FrameworkEpam.Tests
             Assert.AreNotEqual(startUrl, Driver.Url);
         }
 
-        [Test, Order(2)]
+        //[Test, Order(2)]
         public void AddAddressRecordTest()
         {
             var addressLayer = new AddressLayer(Driver);
@@ -42,6 +42,19 @@ namespace FrameworkEpam.Tests
             Assert.AreNotEqual(startRecordsCount, addressLayer.RecordsCount);
 
             addressLayer.Page.CleanUp();
+        }
+
+        [Test, Order(3)]
+        public void AddApiKeyTest()
+        {
+            var apiLayer = new ApiPageLayer(Driver);
+            int startKeysCount = apiLayer.KeysCount;
+
+            apiLayer.CreateFromConfig(ApiConfigCreator.CreateWithInvalidCIDR());
+            Assert.AreEqual(startKeysCount, apiLayer.KeysCount);
+            apiLayer.CreateFromConfig(ApiConfigCreator.CreateRandomValid());
+            Assert.AreNotEqual(startKeysCount, apiLayer.KeysCount);
+
         }
     }
 }

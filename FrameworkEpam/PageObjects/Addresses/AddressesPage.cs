@@ -16,7 +16,7 @@ namespace FrameworkEpam.PageObjects.Addresses
         public IWebElement SkipConfirmToggle => WaitUtil.WaitForElement(UIMap.Get("AddressSkipConfirm"));
         public IWebElement CancelAddingButton => WaitUtil.WaitForElement(UIMap.Get("AddressCancelAdding"));
         public IWebElement DeleteRecordButton => WaitUtil.WaitForElement(UIMap.Get("AddressDeleteButton"));
-        public ICollection<IWebElement> CurrencySelectOptions => WaitUtil.WaitForElements(UIMap.Get("CurrencySelectOptions"));
+        public ICollection<IWebElement> CurrencySelectOptions => WaitUtil.WaitForElements(UIMap.Get("CurrencySelectOptions"), 1);
         public ICollection<IWebElement> Records => WaitUtil.WaitForElements(UIMap.Get("AddressRecords"), 1);
 
         public bool CanSubmit => string.IsNullOrEmpty(SubmitButton.GetAttribute("disabled"));
