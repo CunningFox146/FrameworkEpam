@@ -1,7 +1,8 @@
 ﻿using FrameworkEpam.Service;
 using FrameworkEpam.Service.Layers;
+using FrameworkEpam.Utils;
 using NUnit.Framework;
-using System.Threading;
+using System;
 
 namespace FrameworkEpam.Tests
 {
@@ -44,7 +45,7 @@ namespace FrameworkEpam.Tests
             addressLayer.Page.CleanUp();
         }
 
-        [Test, Order(3)]
+        //[Test, Order(3)]
         public void AddApiKeyTest()
         {
             var apiLayer = new ApiPageLayer(Driver);
@@ -55,6 +56,26 @@ namespace FrameworkEpam.Tests
             apiLayer.CreateFromConfig(ApiConfigCreator.CreateRandomValid());
             Assert.AreNotEqual(startKeysCount, apiLayer.KeysCount);
 
+        }
+
+        [Test, Order(4)]
+        public void DownloadTradeHistoryTest()
+        {
+            var historyLayer = new TradeHistoryLayer(Driver);
+            var path = @"C:\Users\Makar.Dzezhamesau\Desktop\testdownloads";
+            string fileNameExpected = "Trade History";
+            string currDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var oldFiles = FileUtil.GetAllFilesInDirectory(path);
+            historyLayer.Download();
+            WaitUtil.DoTaskInTime(1000, () =>
+            {
+                var newFiles = FileUtil.GetNewFiles(oldFiles, path);
+                historyLayer.CleanUp();
+
+                Assert.AreEqual(newFiles.Length, 1);
+                Assert.That(() => newFiles[0].Contains(fileNameExpected) && newFiles[0].Contains(currDate));
+            });
         }
     }
 }

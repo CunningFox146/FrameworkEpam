@@ -38,6 +38,8 @@ namespace FrameworkEpam.Driver
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--ignore-certificate-errors");
             options.AddArguments("--ignore-ssl-errors");
+            options.AddUserProfilePreference("download.default_directory", @"C:\Users\Makar.Dzezhamesau\Desktop\testdownloads");
+            options.AddUserProfilePreference("download.prompt_for_download", false);
 
             return new ChromeDriver(options);
         }
