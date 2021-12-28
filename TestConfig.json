@@ -1,8 +1,9 @@
 {
-	"LogsPath": "Logs/log.txt",
-	"Browser": "Firefox",
+	"LogsPath": "C:/Users/Makar.Dzezhamesau/Desktop/log.txt",
+	"Browser": "Chrome",
 	"DriverPath": "C:/Program Files/",
 	"UIMapPath": "C:/Users/Makar.Dzezhamesau/Desktop/UIMap.json",
+	"ScreenshotsPath": "C:/Users/Makar.Dzezhamesau/Pictures/Selenium/",
 	"User": {
 		"Login": "makar.papca@gmail.com",
 		"Password": "Cunning84"

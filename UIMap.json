@@ -8,8 +8,40 @@
 		"MarketTab": ".ordTypes > li[data-tab-index='1']",
 		"MarketStopTab": ".ordTypes > li[data-tab-index='2']",
 		"MarketValueField": "input#notionalValue",
+		"MarketStopField": "input#stopPx",
+		"MarketSellButton": ".btn.sell",
+		"MarketBuyButton": ".btn.buy",
 		"Notification": ".notifications .notification",
-		"SuccessSellButton": ".btn-success"
+		"SuccessSellButton": ".btn-success",
+		"AddRecordButton": ".body > div > button.btn-primary",
+		"AddressNameField": "form input[name='name']",
+		"AddressAddressField": "form input[name='address']",
+		"AddressNoteField": "form input[name='note']",
+		"CurrencySelect": "select[name='currency']",
+		"CurrencySelectOptions": "select[name='currency'] > option",
+		"AddressSubmitButton": "button[type='submit']",
+		"AddressSkipConfirm": "label[for='skipConfirm']",
+		"AddressCancelAdding": "form > div > button",
+		"AddressRecords": "tbody tr[class]",
+		"AddressDeleteButton": ".btn-danger",
+		"ApiNameField": "input[name='name']",
+		"ApiCidrField": "input[name='cidr']",
+		"ApiSelect": "select[name='orderPermissions']",
+		"ApiSelectOptions": "select[name='orderPermissions'] > option",
+		"ApiSubmitButton": "button[type='submit']",
+		"ApiTableCols": "div.body tbody tr[class]",
+		"TradeHistoryDownloadButton": ".utils > button",
+		"XBTValue": "span > a[href='/app/wallet/xbt'] > span",
+		"XBtOption": "span > select > option[value='XBt']",
+		"XBTOption": "span > select > option[value='XBT']",
+		"Trollbox": "div.popUpChat",
+		"ChatInput": "textarea.chatInput",
+		"ChatMyMessage": ".chatMessage.me",
+		"DialogConfirm": ".dialogConfirm",
+		"NotificationSuccess": ".notification",
+		"CloseNotificationButton": ".notification > button.close"
 	},
-	"XpathSelectors": {}
+	"XpathSelectors": {
+		"SettingsButton": "//*[@href='/img/static/icons.svg#settings']/../.."
+	}
 }

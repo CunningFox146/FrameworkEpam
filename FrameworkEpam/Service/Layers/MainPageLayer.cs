@@ -11,6 +11,7 @@ namespace FrameworkEpam.Service.Layers
         public bool IsSellButtonActive => string.IsNullOrEmpty(Page.OrderElement.SellButton.GetAttribute("disabled"));
         public bool IsBuyButtonActive => string.IsNullOrEmpty(Page.OrderElement.BuyButton.GetAttribute("disabled"));
         public int NotificationsCount => Page.Notifications.Count;
+        public int MyMessagesCount => Page.TrollBox.MyMessages.Count;
 
         public MainPageLayer(IWebDriver driver)
         {
@@ -58,6 +59,29 @@ namespace FrameworkEpam.Service.Layers
         {
             Page.OrderElement.BuyButton.Click();
             Page.DialogConfirmButton.Click();
+            return this;
+        }
+
+        public MainPageLayer WriteChatMessage(string message)
+        {
+            Page.TrollBox.ChatInput.SendKeys(message);
+            Page.TrollBox.ChatInput.SendKeys(Keys.Enter);
+            return this;
+        }
+
+        public MainPageLayer CloseAllNotifications()
+        {
+            foreach (var button in Page.CloseNotificationButtons)
+            {
+                button.Click();
+            }
+            return this;
+        }
+
+
+        public MainPageLayer OpenTrollBox()
+        {
+            Page.TrollBox.Open();
             return this;
         }
     }

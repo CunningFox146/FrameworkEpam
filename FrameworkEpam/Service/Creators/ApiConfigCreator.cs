@@ -8,7 +8,7 @@ namespace FrameworkEpam.Service
     {
         public static ApiConfig CreateRandomValid()
         {
-            return new ApiConfig() { Name = "123", CIDR = "", Permission = 1 };
+            return new ApiConfig() { Name = "123", CIDR = "", Permission = 0 };
         }
 
         public static ApiConfig CreateWithInvalidCIDR() => new ApiConfig() { Name = "123", CIDR = "123", Permission = 0 };
