@@ -11,6 +11,9 @@ namespace FrameworkEpam.PageObjects.MainPage
         public IWebElement MarketOrderTab => WaitUtil.WaitForElement(UIMap.Get("MarketTab"));
         public IWebElement MarketStopOrderTab => WaitUtil.WaitForElement(UIMap.Get("MarketStopTab"));
         public IWebElement MarketValueField => WaitUtil.WaitForElement(UIMap.Get("MarketValueField"));
+        public IWebElement MarketStopField => WaitUtil.WaitForElement(UIMap.Get("MarketStopField"));
+        public IWebElement SellButton => WaitUtil.WaitForElement(UIMap.Get("MarketSellButton"));
+        public IWebElement BuyButton => WaitUtil.WaitForElement(UIMap.Get("MarketBuyButton"));
 
         public OrderType CurrentOrderType => _orderType;
 

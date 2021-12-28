@@ -3,6 +3,7 @@ using FrameworkEpam.Service.Layers;
 using FrameworkEpam.Utils;
 using NUnit.Framework;
 using System;
+using System.Threading;
 
 namespace FrameworkEpam.Tests
 {
@@ -78,7 +79,7 @@ namespace FrameworkEpam.Tests
             });
         }
 
-        [Test, Order(8)]
+        //[Test, Order(8)]
         public void ChangeCurrencyDisplay()
         {
             var mainPageLayer = new MainPageLayer(Driver);
@@ -90,6 +91,57 @@ namespace FrameworkEpam.Tests
 
             mainPageLayer.ChangeCurrencyToXBT();
             Assert.AreEqual(startXBT, mainPageLayer.CurrentXbtValue);
+        }
+
+        //[Test, Order(9)]
+        public void WriteMessageToTrollbox()
+        {
+            var trollboxLayer = new TrollboxLayer(Driver);
+            trollboxLayer.Open();
+            int messagesCount = trollboxLayer.MyMessagesCount;
+            trollboxLayer.WriteChatMessage("123");
+            Assert.AreEqual(messagesCount, trollboxLayer.MyMessagesCount);
+        }
+
+        //[Test, Order(4)]
+        public void SellLimitTest()
+        {
+            var mainPageLayer = new MainPageLayer(Driver);
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Limit, "0");
+            Assert.That(mainPageLayer.IsSellButtonActive, Is.False);
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Limit, "100");
+            Assert.That(mainPageLayer.IsSellButtonActive, Is.True);
+
+            int successNotifications = mainPageLayer.NotificationsCount;
+            mainPageLayer.Sell();
+            Assert.AreNotEqual(successNotifications, mainPageLayer.NotificationsCount);
+        }
+
+        //[Test, Order(5)]
+        public void SellMarketTest()
+        {
+            var mainPageLayer = new MainPageLayer(Driver);
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Market, "0");
+            Assert.That(mainPageLayer.IsSellButtonActive, Is.False);
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Market, "100");
+            Assert.That(mainPageLayer.IsSellButtonActive, Is.True);
+
+            int successNotifications = mainPageLayer.NotificationsCount;
+            mainPageLayer.Sell();
+            Assert.AreNotEqual(successNotifications, mainPageLayer.NotificationsCount);
+        }
+        [Test, Order(6)]
+        public void SellMarketStopTest()
+        {
+            var mainPageLayer = new MainPageLayer(Driver);
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.MarketStop, "0");
+            Assert.That(mainPageLayer.IsBuyButtonActive, Is.False);
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.MarketStop, "100", "448394");
+            Assert.That(mainPageLayer.IsBuyButtonActive, Is.True);
+
+            int successNotifications = mainPageLayer.NotificationsCount;
+            mainPageLayer.Buy();
+            Assert.AreNotEqual(successNotifications, mainPageLayer.NotificationsCount);
         }
     }
 }
