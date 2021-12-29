@@ -39,7 +39,10 @@
 		"ChatMyMessage": ".chatMessage.me",
 		"DialogConfirm": ".dialogConfirm",
 		"NotificationSuccess": ".notification",
-		"CloseNotificationButton": ".notification > button.close"
+		"CloseNotificationButton": ".notification > button.close",
+		"PositionsTab": "section .nav.nav-tabs li[data-tab-index='0']",
+		"PositionSellButtons": ".positionsList tr.selected span .btn",
+		"PositionsExpandBtn": "div.basicOrdersAndPositionsWrapper .fa-expand"
 	},
 	"XpathSelectors": {
 		"SettingsButton": "//*[@href='/img/static/icons.svg#settings']/../.."

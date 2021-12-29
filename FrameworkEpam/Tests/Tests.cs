@@ -102,6 +102,17 @@ namespace FrameworkEpam.Tests
             Assert.AreNotEqual(successNotifications, mainPageLayer.NotificationsCount);
         }
 
+        [Test, Order(7)]
+        public void ClosePositionTest()
+        {
+            var mainPageLayer = new MainPageLayer(Driver);
+            mainPageLayer.CloseAllNotifications();
+            mainPageLayer.OpenPositionsTab();
+            Assert.That(mainPageLayer.HasOpenPositions, Is.True);
+            mainPageLayer.CloseSelectedPosition();
+            Assert.Positive(mainPageLayer.NotificationsCount);
+        }
+
         [Test, Order(8)]
         public void ChangeCurrencyDisplay()
         {

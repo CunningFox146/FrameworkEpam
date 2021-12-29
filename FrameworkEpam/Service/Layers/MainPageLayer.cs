@@ -12,6 +12,7 @@ namespace FrameworkEpam.Service.Layers
         public bool IsBuyButtonActive => string.IsNullOrEmpty(Page.OrderElement.BuyButton.GetAttribute("disabled"));
         public int NotificationsCount => Page.Notifications.Count;
         public int MyMessagesCount => Page.TrollBox.MyMessages.Count;
+        public bool HasOpenPositions => Page.PositionSellMarket != null;
 
         public MainPageLayer(IWebDriver driver)
         {
@@ -82,6 +83,20 @@ namespace FrameworkEpam.Service.Layers
         public MainPageLayer OpenTrollBox()
         {
             Page.TrollBox.Open();
+            return this;
+        }
+
+        public MainPageLayer OpenPositionsTab()
+        {
+            Page.PositionsTab.Click();
+            Page.PositionsExpandBtn.Click();
+            return this;
+        }
+
+        public MainPageLayer CloseSelectedPosition()
+        {
+            Page.PositionSellMarket?.Click();
+            Page.DialogConfirmButton.Click();
             return this;
         }
     }
