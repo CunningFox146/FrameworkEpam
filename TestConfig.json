@@ -1,11 +1,24 @@
 {
-	"LogsPath": "C:/Users/Makar.Dzezhamesau/Desktop/log.txt",
+	"LogsPath": "C:/Users/Makar.Dzezhamesau/Desktop/",
 	"Browser": "Chrome",
 	"DriverPath": "C:/Program Files/",
+	"DownloadPath": "C:/Users/Makar.Dzezhamesau/Desktop/testdownloads",
 	"UIMapPath": "C:/Users/Makar.Dzezhamesau/Desktop/UIMap.json",
 	"ScreenshotsPath": "C:/Users/Makar.Dzezhamesau/Pictures/Selenium/",
 	"User": {
 		"Login": "makar.papca@gmail.com",
 		"Password": "Cunning84"
+	},
+	"LimitOrder": {
+		"Size": "100",
+		"Limit": ""
+	},
+	"MarketOrder": {
+		"Size": "100",
+		"Limit": ""
+	},
+	"MarketStopOrder": {
+		"Size": "100",
+		"Limit": ""
 	}
 }
