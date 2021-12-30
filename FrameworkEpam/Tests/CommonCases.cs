@@ -4,7 +4,6 @@ using FrameworkEpam.Utils;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using Serilog;
 using System;
 
@@ -28,6 +27,7 @@ namespace FrameworkEpam.Tests
         [OneTimeSetUp]
         public virtual void OneTimeSetUp()
         {
+            Log.Debug($"Initioalizig driver");
             _driver = DriverSingleton.Driver;
 
             Driver.Manage().Window.Maximize();
@@ -40,7 +40,9 @@ namespace FrameworkEpam.Tests
         [TearDown]
         public virtual void TearDown()
         {
-            bool havePassed = TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed;
+            var context = TestContext.CurrentContext;
+            Log.Information($"Test '{context.Test.Name}' finished: {context.Result.Outcome.ToString()} ({context.Result.Message})");
+            bool havePassed = context.Result.Outcome.Status == TestStatus.Passed;
             if (havePassed) return;
 
             Screenshoter.TakeScreenshot();
@@ -49,6 +51,7 @@ namespace FrameworkEpam.Tests
         [OneTimeTearDown]
         public virtual void OneTimeTearDown()
         {
+            Log.Debug($"Taring down tests");
             LoggerManager.StopLogger();
             Driver.Quit();
         }

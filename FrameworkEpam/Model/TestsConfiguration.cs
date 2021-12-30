@@ -10,9 +10,14 @@ namespace FrameworkEpam.Model
         public string Browser { get; set; }
         public string DriverPath { get; set; }
         public string ScreenshotsPath { get; set; }
+        public string DownloadPath { get; set; }
+
         public User User { get; set; }
 
-        [JsonIgnore]
+        public OrderData LimitOrder { get; set; }
+        public OrderData MarketOrder { get; set; }
+        public OrderData MarketStopOrder { get; set; }
+
         public UIMapConfiguration UIMapConfig { get; set; }
 
         public TestsConfiguration FillDefaultValues()

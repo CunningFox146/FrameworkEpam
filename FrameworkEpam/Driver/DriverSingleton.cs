@@ -38,7 +38,7 @@ namespace FrameworkEpam.Driver
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--ignore-certificate-errors");
             options.AddArguments("--ignore-ssl-errors");
-            options.AddUserProfilePreference("download.default_directory", @"C:\Users\Makar.Dzezhamesau\Desktop\testdownloads");
+            options.AddUserProfilePreference("download.default_directory", ConfigurationManager.Configuration.DownloadPath);
             options.AddUserProfilePreference("download.prompt_for_download", false);
 
             return new ChromeDriver(options);
@@ -46,8 +46,13 @@ namespace FrameworkEpam.Driver
 
         private static WebDriver InitFirefox(string driverPath)
         {
-            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(driverPath);
-            return new FirefoxDriver(service);
+            var options = new FirefoxOptions();
+            options.BrowserExecutableLocation = driverPath;
+            options.AddAdditionalOption("browser.download.dir", ConfigurationManager.Configuration.DownloadPath);
+            options.AddAdditionalOption("browser.download.manager.showWhenStarting", false);
+            options.AddAdditionalOption("browser.helperApps.neverAsk.saveToDisk", "text/csv");
+
+            return new FirefoxDriver(options);
         }
 
     }

@@ -1,5 +1,7 @@
-﻿using FrameworkEpam.PageObjects.MainPage;
+﻿using FrameworkEpam.Model;
+using FrameworkEpam.PageObjects.MainPage;
 using OpenQA.Selenium;
+using System;
 
 namespace FrameworkEpam.Service.Layers
 {
@@ -37,6 +39,7 @@ namespace FrameworkEpam.Service.Layers
             return this;
         }
 
+        public void SetSellValue(OrderType type, OrderData order) => SetSellValue(type, order.Size, order.Limit);
         public void SetSellValue(OrderType type, string value, string stopValue = "")
         {
             Page.OrderElement.OpenTab(type);

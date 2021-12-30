@@ -19,6 +19,6 @@ namespace FrameworkEpam.Service.Layers
             return this;
         }
 
-        public void CleanUp() => FileUtil.RemoveAllFilesInDirectory(@"C:\Users\Makar.Dzezhamesau\Desktop\testdownloads");
+        public void CleanUp() => FileUtil.RemoveAllFilesInDirectory(ConfigurationManager.Configuration.DownloadPath);
     }
 }

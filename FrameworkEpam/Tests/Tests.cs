@@ -1,4 +1,5 @@
 ﻿using FrameworkEpam.Service;
+using FrameworkEpam.Service.Creators;
 using FrameworkEpam.Service.Layers;
 using FrameworkEpam.Utils;
 using NUnit.Framework;
@@ -61,10 +62,11 @@ namespace FrameworkEpam.Tests
         public void SellLimitTest()
         {
             var mainPageLayer = new MainPageLayer(Driver);
+            var validOrder = OrderCreator.CreateValidLimitOrder();
             mainPageLayer.CloseAllNotifications();
             mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Limit, "0");
             Assert.That(mainPageLayer.IsSellButtonActive, Is.False);
-            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Limit, "100");
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Limit, validOrder);
             Assert.That(mainPageLayer.IsSellButtonActive, Is.True);
 
             int successNotifications = mainPageLayer.NotificationsCount;
@@ -76,10 +78,11 @@ namespace FrameworkEpam.Tests
         public void SellMarketTest()
         {
             var mainPageLayer = new MainPageLayer(Driver);
+            var validOrder = OrderCreator.CreateValidLimitOrder();
             mainPageLayer.CloseAllNotifications();
             mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Market, "0");
             Assert.That(mainPageLayer.IsSellButtonActive, Is.False);
-            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Market, "100");
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.Market, validOrder);
             Assert.That(mainPageLayer.IsSellButtonActive, Is.True);
 
             int successNotifications = mainPageLayer.NotificationsCount;
@@ -91,10 +94,11 @@ namespace FrameworkEpam.Tests
         public void SellMarketStopTest()
         {
             var mainPageLayer = new MainPageLayer(Driver);
+            var validOrder = OrderCreator.CreateValidLimitOrder();
             mainPageLayer.CloseAllNotifications();
             mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.MarketStop, "0", "0");
             Assert.That(mainPageLayer.IsBuyButtonActive, Is.False);
-            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.MarketStop, "100", "448394");
+            mainPageLayer.SetSellValue(PageObjects.MainPage.OrderType.MarketStop, validOrder);
             Assert.That(mainPageLayer.IsBuyButtonActive, Is.True);
 
             int successNotifications = mainPageLayer.NotificationsCount;
@@ -135,7 +139,7 @@ namespace FrameworkEpam.Tests
             mainPageLayer.CloseAllNotifications();
             mainPageLayer.OpenTrollBox();
             int messagesCount = mainPageLayer.MyMessagesCount;
-            mainPageLayer.WriteChatMessage("123");
+            mainPageLayer.WriteChatMessage(StringUtil.RandomString(5));
             Assert.AreEqual(messagesCount, mainPageLayer.MyMessagesCount);
         }
 
@@ -143,7 +147,7 @@ namespace FrameworkEpam.Tests
         public void DownloadTradeHistoryTest()
         {
             var historyLayer = new TradeHistoryLayer(Driver);
-            var path = @"C:\Users\Makar.Dzezhamesau\Desktop\testdownloads";
+            var path = ConfigurationManager.Configuration.DownloadPath;
             string fileNameExpected = "Trade History";
             string currDate = DateTime.Now.ToString("yyyy-MM-dd");
 

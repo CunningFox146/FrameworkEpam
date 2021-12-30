@@ -1,5 +1,6 @@
 ﻿using FrameworkEpam.Model;
 using Newtonsoft.Json;
+using Serilog;
 using System;
 using System.IO;
 
@@ -17,6 +18,7 @@ namespace FrameworkEpam.Utils
 
                 if (configPath == null)
                 {
+                    Log.Error($"Failed to get testConfigPath from PATH");
                     throw new Exception("Failed to get testConfigPath from PATH");
                 }
 
@@ -37,7 +39,6 @@ namespace FrameworkEpam.Utils
                     Configuration = new TestsConfiguration().FillDefaultValues();
                 }
             }
-
         }
     }
 }
